@@ -39,4 +39,24 @@ def create(request):
         new_employees.save()
         return HttpResponseRedirect(reverse('employees:index'))
     else:
-        return render(request, 'employees/create.html')    
+        return render(request, 'employees/create.html')  
+
+def edit_profile(request):
+    logged_in_user = request.user
+    logged_in_employees = Employees.objects.get(user=logged_in_user)
+    if request.method == "POST":
+        name_from_form = request.POST.get('name')
+        zip_from_form = request.POST.get('zip_code')
+        logged_in_employees.name = name_from_form
+        logged_in_employees.zip_code = zip_from_form
+        logged_in_employees.save()
+        return HttpResponseRedirect(reverse('employees:index'))
+    else:
+        context = {
+            'logged_in_employees': logged_in_employees
+        }
+        return render(request, 'employees/edit_profile.html', context)
+       
+       
+      
+       
