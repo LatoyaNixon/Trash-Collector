@@ -29,4 +29,14 @@ def index(request):
         return render(request, 'employees/index.html')
     except ObjectDoesNotExist:
             return HttpResponseRedirect(reverse('employees:create'))
-    
+
+def create(request):
+    logged_in_user = request.user
+    if request.method == "POST":
+        name_from_form = request.POST.get('name')
+        zip_from_form = request.POST.get('zip_code')
+        new_employees = Employees(name=name_from_form, user=logged_in_user, zip_code=zip_from_form)
+        new_employees.save()
+        return HttpResponseRedirect(reverse('employees:index'))
+    else:
+        return render(request, 'employees/create.html')    
