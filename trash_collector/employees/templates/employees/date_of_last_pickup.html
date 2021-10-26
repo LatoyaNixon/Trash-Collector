@@ -1,0 +1,17 @@
+{% extends 'employees\employee_base.html' %}
+
+{% block title %} Submit Form {% endblock %}
+
+{% block header %} Confirm trash was collected {% endblock %}
+
+{% block content %}
+<br />
+<form action="{% url 'employees:date_of_last_pickup' %}" method="post">
+    {% csrf_token %}
+    Date of Pick Up: <input type="date" name="date" id="date">
+    <br />
+    <br />
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
