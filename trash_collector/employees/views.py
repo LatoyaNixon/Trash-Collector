@@ -20,17 +20,17 @@ def index(request):
     logged_in_user = request.user
     try:
         # This line will return the customer record of the logged-in user if one exists
-        logged_in_employee = Employees.objects.get(user=logged_in_user)
-        customer_in_zip_code = Customer.objects.filter(zip_code=logged_in_employee.zip_code) 
+        logged_in_employees = Employees.objects.get(user=logged_in_user)
+        customer_in_zip_code = Customer.objects.filter(zip_code=logged_in_employees.zip_code) 
 
         today = date.today()
         
         context = {
-            'logged_in_employee': logged_in_employee,
+            'logged_in_employees': logged_in_employees,
             'today': today,
-            'customer_zip_code': customer_in_zip_code
+            'customer_in_zip_code': customer_in_zip_code
         }
-        return render(request, 'employees/index.html')
+        return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
             return HttpResponseRedirect(reverse('employees:create'))
 

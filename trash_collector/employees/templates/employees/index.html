@@ -5,12 +5,10 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
-    Zip Code: {{logged_in_employees.zip_code }}<br />
+    Zip Code: {{ logged_in_employees.zip_code }}<br />
     <br />
     <br />
-    {% if logged_in_employees.zip_code =  customer_zip_code.zip_code %}
-      Displayed are the customers in your area for pick up. {{ customer_zip_code.zip_code }}
-    {% endif %}
+      Displayed are the customers in your area for pick up: {{ customer_in_zip_code }}
     <br />
     <br />
   {% else %}
