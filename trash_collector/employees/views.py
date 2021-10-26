@@ -21,14 +21,14 @@ def index(request):
     try:
         # This line will return the customer record of the logged-in user if one exists
         logged_in_employee = Employees.objects.get(user=logged_in_user)
-        customer_zip_code = Customer.objects.filter(zip_code=logged_in_employee.zip_code) 
-        
+        customer_in_zip_code = Customer.objects.filter(zip_code=logged_in_employee.zip_code) 
+
         today = date.today()
         
         context = {
             'logged_in_employee': logged_in_employee,
             'today': today,
-            'customer_zip_code': customer_zip_code
+            'customer_zip_code': customer_in_zip_code
         }
         return render(request, 'employees/index.html')
     except ObjectDoesNotExist:
