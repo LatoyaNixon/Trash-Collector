@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.apps import apps
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 from .models import Employees
 
@@ -22,11 +23,10 @@ def index(request):
     try:
         # This line will return the customer record of the logged-in user if one exists
         days = ['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday']
-        
         today = date.today()
         logged_in_employees = Employees.objects.get(user=logged_in_user)
-        customer_in_zip_code = all_customers.filter(zip_code=logged_in_employees.zip_code, weekly_pickup = days[date.weekday(today)]) 
-
+        customer_in_zip_code = all_customers.filter(zip_code=logged_in_employees.zip_code) 
+        customer_pickup_date = customer_in_zip_code.filter(Q(weekly_pickup = days[date.weekday(today)] | Q())
 
         
         
@@ -34,6 +34,7 @@ def index(request):
             'logged_in_employees': logged_in_employees,
             'today': today,
             'customer_in_zip_code': customer_in_zip_code,
+            'customer_pickup_date': customer_pickup_date
         }
         return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
