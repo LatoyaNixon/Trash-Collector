@@ -15,20 +15,25 @@ from .models import Employees
 def index(request):
     # This line will get the Customer model from the other app, it can now be used to query the db for Customers
     Customer = apps.get_model('customers.Customer')
+    all_customers = Customer.objects.all()
     
     # The following line will get the logged-in user (if there is one) within any view function
     logged_in_user = request.user
     try:
         # This line will return the customer record of the logged-in user if one exists
-        logged_in_employees = Employees.objects.get(user=logged_in_user)
-        customer_in_zip_code = Customer.objects.filter(zip_code=logged_in_employees.zip_code) 
-
+        days = ['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday']
+        
         today = date.today()
+        logged_in_employees = Employees.objects.get(user=logged_in_user)
+        customer_in_zip_code = all_customers.filter(zip_code=logged_in_employees.zip_code, weekly_pickup = days[date.weekday(today)]) 
+
+
+        
         
         context = {
             'logged_in_employees': logged_in_employees,
             'today': today,
-            'customer_in_zip_code': customer_in_zip_code
+            'customer_in_zip_code': customer_in_zip_code,
         }
         return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
