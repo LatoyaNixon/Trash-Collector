@@ -27,6 +27,7 @@ def index(request):
         logged_in_employees = Employees.objects.get(user=logged_in_user)
         customer_in_zip_code = all_customers.filter(zip_code=logged_in_employees.zip_code) 
         customer_pickup_date = customer_in_zip_code.filter(Q(weekly_pickup = days[date.weekday(today)]) | Q(one_time_pickup=date.today()))
+        customer_suspended_dates = customer_pickup_date.exclude(Q(suspend_start = date.today()) | Q(suspend_end = date.today()))
 
         
         
@@ -34,7 +35,8 @@ def index(request):
             'logged_in_employees': logged_in_employees,
             'today': today,
             'customer_in_zip_code': customer_in_zip_code,
-            'customer_pickup_date': customer_pickup_date
+            'customer_pickup_date': customer_pickup_date,
+            'customer_suspended_dates': customer_suspended_dates
         }
         return render(request, 'employees/index.html', context)
     except ObjectDoesNotExist:
