@@ -8,7 +8,12 @@
     Zip Code: {{ logged_in_employees.zip_code }}<br />
     <br />
     <br />
-      Displayed are the customers in your area for pick up: {{ customer_in_zip_code }}
+    <h3>Displayed are the customers in your area for pick up: </h3>
+    <ul>
+      {% for customer in customer_in_zip_code %}
+      <h4>{{ customer.name }}</h4>
+      {% endfor %}
+    </ul>
     <br />
     <br />
   {% else %}
