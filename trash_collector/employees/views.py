@@ -26,7 +26,7 @@ def index(request):
         today = date.today()
         logged_in_employees = Employees.objects.get(user=logged_in_user)
         customer_in_zip_code = all_customers.filter(zip_code=logged_in_employees.zip_code) 
-        customer_pickup_date = customer_in_zip_code.filter(Q(weekly_pickup = days[date.weekday(today)] | Q())
+        customer_pickup_date = customer_in_zip_code.filter(Q(weekly_pickup = days[date.weekday(today)]) | Q(one_time_pickup=date.today()))
 
         
         
