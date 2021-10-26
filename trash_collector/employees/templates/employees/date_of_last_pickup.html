@@ -6,7 +6,7 @@
 
 {% block content %}
 <br />
-<form action="{% url 'employees:date_of_last_pickup' %}" method="post">
+<form action="{% url 'employees:date_of_last_pickup' current_customer.id%}" method="post">
     {% csrf_token %}
     Date of Pick Up: <input type="date" name="date" id="date">
     <br />

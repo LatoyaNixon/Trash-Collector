@@ -10,8 +10,8 @@
     <br />
     <h3>Displayed are the customers in your area for pick up: </h3>
     <ul>
-      {% for customer in customer_suspended_dates %}
-      <h4>{{ customer.name }} - <a href= "{% url 'employees:date_of_last_pickup' %}"> <button>submit</button></a></h4>
+      {% for customer in customer_trash_picked_up %}
+      <h4>{{ customer.name }} - <a href= "{% url 'employees:date_of_last_pickup' customer.id%}"> <button>submit</button></a></h4>
       {% endfor %}
     </ul>
     <br />
