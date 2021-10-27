@@ -88,7 +88,7 @@ def date_of_last_pickup_confirmation(request, customer_id):
         return render(request, 'employees/date_of_last_pickup.html', context)       
       
 
-def details_pickup(request):
+def filter_customer_by_day(request):
     Customer = apps.get_model('customers.Customer')
     # days = ['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday']
     
@@ -99,8 +99,8 @@ def details_pickup(request):
             'display_customers': display_customers,
             'day_from_form': day_from_form
         }
-        return render(request, 'employees/details.html', context)
+        return render(request, 'employees/filter_by_day.html', context)
     else:
       
-        return render(request, 'employees/details.html')
+        return render(request, 'employees/filter_by_day.html')
    

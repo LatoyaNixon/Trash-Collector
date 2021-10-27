@@ -10,7 +10,7 @@ urlpatterns = [
     path('create/', views.create, name="create"),
     path('edit_profile/', views.edit_profile, name="edit_profile"),
     path('date_of_last_pickup/<int:customer_id>', views.date_of_last_pickup_confirmation, name="date_of_last_pickup"),
-    path('details/', views.details_pickup, name="details"),
+    path('filter_by_day/', views.filter_customer_by_day, name="filter_by_day"),
 ]
     
     
