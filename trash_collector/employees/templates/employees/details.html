@@ -1,0 +1,19 @@
+{% extends 'employees\employee_base.html' %}
+
+{% block title %} Customer Weekly Pickup {% endblock %}
+
+{% block header %} Customer Weekly Pickup{% endblock %}
+
+{% block content %}
+<h3> Displayed are the customers: </h3>
+<ul>
+    {% for customer in display_customers %}
+    <h4>{{ customer.name }} 
+    {% endfor %}
+  </ul>
+    
+   
+    
+
+
+{% endblock %}

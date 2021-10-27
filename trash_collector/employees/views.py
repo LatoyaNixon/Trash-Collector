@@ -6,6 +6,7 @@ from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 
+
 from .models import Employees
 
 # Create your views here.
@@ -85,4 +86,19 @@ def date_of_last_pickup_confirmation(request, customer_id):
         }
         return render(request, 'employees/date_of_last_pickup.html', context)       
       
-       
+def details_pickup(request):
+    Customer = apps.get_model('customers.Customer')
+    display_customers = Customer.objects.all()
+    context = {
+        'display_customers': display_customers
+    }
+    return render(request, 'employees/details.html', context)
+
+def details_filtered_by_day(request):
+    Customer = apps.get_model('customers.Customer')
+    today = date.today()
+    days = ['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday']
+    display_customers = Customer.objects.filter(weekly_pickup = days[date.weekday(today)])
+    
+    
+   
