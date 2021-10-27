@@ -76,6 +76,7 @@ def date_of_last_pickup_confirmation(request, customer_id):
     if request.method == "POST":
         date_from_form = request.POST.get('date')
         current_customer.date_of_last_pickup = date_from_form
+        current_customer.balance = 20
         current_customer.save()
         return HttpResponseRedirect(reverse('employees:index'))
     else:
