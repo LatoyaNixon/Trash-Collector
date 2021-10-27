@@ -1,3 +1,4 @@
+from os import X_OK
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -86,19 +87,20 @@ def date_of_last_pickup_confirmation(request, customer_id):
         }
         return render(request, 'employees/date_of_last_pickup.html', context)       
       
+
 def details_pickup(request):
     Customer = apps.get_model('customers.Customer')
-    display_customers = Customer.objects.all()
-    context = {
-        'display_customers': display_customers
-    }
-    return render(request, 'employees/details.html', context)
-
-def details_filtered_by_day(request):
-    Customer = apps.get_model('customers.Customer')
-    today = date.today()
-    days = ['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday']
-    display_customers = Customer.objects.filter(weekly_pickup = days[date.weekday(today)])
+    # days = ['Monday','Tuesday', 'Wednesday','Thursday','Friday','Saturday','Sunday']
     
-    
+    if request.method == "POST":
+        day_from_form = request.POST.get('weekly_pickup')
+        display_customers = Customer.objects.filter(weekly_pickup = day_from_form)
+        context = {
+            'display_customers': display_customers,
+            'day_from_form': day_from_form
+        }
+        return render(request, 'employees/details.html', context)
+    else:
+      
+        return render(request, 'employees/details.html')
    

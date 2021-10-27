@@ -5,12 +5,16 @@
 {% block header %} Customer Weekly Pickup{% endblock %}
 
 {% block content %}
-<h3> Displayed are the customers: </h3>
+<form action="{% url 'employees:details' %}" method="post">
+    {% csrf_token %}
+    Pick a day to search by: <input type='text' name='weekly_pickup' id='weekly_pickup' value={{display_customers.weekly_pickup}}><br/>
+    <input type="submit" value="Submit">
+</form>
 <ul>
     {% for customer in display_customers %}
-    <h4>{{ customer.name }} 
+    <h4>{{day_from_form}}{{ customer.name }}</h4>
     {% endfor %}
-  </ul>
+</ul>
     
    
     
