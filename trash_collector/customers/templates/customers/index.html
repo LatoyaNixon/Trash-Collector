@@ -6,12 +6,28 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-        Hello {{ logged_in_customer.name }}!<br />
-        Address: {{ logged_in_customer.address }} {{logged_in_customer.zip_code }}<br />
-        Current balance: $ {{ logged_in_customer.balance }}.00
-        <br />
-        <br />
-        Your Weekly Pickup Day: {{ logged_in_customer.weekly_pickup }}
+  <div class = "container mt-3"></div>
+        <table class ="table table-dark table-striped">
+          <thead> 
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Zip Code</th>
+                <th>Current Balance</th>
+                <th>Weekly Pick up Day</th>
+            </tr>    
+        </thead>
+        <tbody>
+            <tr>
+                 <td>{{logged_in_customer.name}}</td>
+                 <td>{{ logged_in_customer.address }} </td>
+                 <td>{{logged_in_customer.zip_code }}</td>
+                 <td>$ {{ logged_in_customer.balance }}.00</td>
+                 <td>{{ logged_in_customer.weekly_pickup }}</td>
+            </tr>
+          </tbody> 
+       </table>
+    </div>  
         <br />
         <br />
         {% if logged_in_customer.one_time_pickup %}
