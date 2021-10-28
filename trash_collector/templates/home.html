@@ -13,9 +13,9 @@
 
   <!-- Indicators/dots -->
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="trash_collector" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="trash_collector" data-bs-slide-to="1" class="active"></button>
-    <button type="button" data-bs-target="trash_collector" data-bs-slide-to="2" class="active"></button>
+    <button type="button" data-bs-target="#trash_collector" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#trash_collector" data-bs-slide-to="1" ></button>
+    <button type="button" data-bs-target="#trash_collector" data-bs-slide-to="2" ></button>
   </div>
   
   <!-- The slideshow/carousel -->
@@ -24,18 +24,18 @@
       <img src="{% static 'trash_collector/landfill.jpg' %}" alt="landfill" class="d-block" style="width:100%">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'trash_collector/garbage_man.jpg' %}" alt="garbage man" class="d-block" style="width:100%">
+      <img src="{% static 'trash_collector/garbage_man.jpg' %}" alt="garbage_man" class="d-block" style="width:100%">
     </div>
     <div class="carousel-item">
-      <img src="{% static 'trash_collector/garbage_truck.jpg' %}" alt="garbage truck" class="d-block" style="width:100%">
+      <img src="{% static 'trash_collector/garbage_truck.jpg' %}" alt="garbage_truck" class="d-block" style="width:100%">
     </div>
   </div>
   
   <!-- Left and right controls/icons -->
-  <button class="carousel-control-prev" type="button" data-bs-target="trash_collector" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#trash_collector" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="trash_collector" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#trash_collector" data-bs-slide="next">
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
