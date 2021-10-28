@@ -11,9 +11,29 @@
     <input type="submit" value="Submit">
 </form>
 <ul>
-    {% for customer in display_customers %}
-    <h4>{{day_from_form}} - {{ customer.name }}</h4>
-    {% endfor %}
+    <!-- {% for customer in display_customers %}
+    {{customer.name}}
+    {% endfor %} -->
+<div class = "container mt-3"></div>
+   <table class ="table table-dark table-striped">
+    <thead> 
+        <tr>
+            <th>Day</th>
+            <th>Customer Name</th>
+        </tr>    
+    </thead>
+    <tbody>
+        {% for customer in display_customers %}
+        <tr>
+            <td>{{day_from_form}}</td>
+            <td>{{customer.name}}</td>
+        </tr>
+        {% endfor %}
+    </tbody> 
+   </table>
+</div>    
+    <!-- <h4>{{day_from_form}} - {{ customer.name }}</h4> -->
+    
 </ul>
     
    
