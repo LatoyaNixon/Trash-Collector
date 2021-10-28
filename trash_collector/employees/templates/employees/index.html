@@ -5,16 +5,14 @@
 {% block content %}
   {% if user.is_authenticated %}
     Hello Employee {{ user.username }}!
-    Zip Code: {{ logged_in_employees.zip_code }}<br />
     <br />
     <br />
-    <h4>Displayed are the customers in your area for pick up: </h4>
     <ul>
       <div class = "container mt-3"></div>
          <table class ="table table-dark table-striped">
           <thead> 
               <tr>
-                  <th>Name</th>
+                  <th>Customers for Pickup</th>
                   <th>Confirm Pickup</th>
               </tr>    
           </thead>
@@ -31,10 +29,11 @@
       </ul>
     <br />
     <br />
+    <div class="col-8" align="center">
     <a href="{% url 'employees:filter_by_day' %}"><button type="button" class="btn btn-outline-info">Search by day of the Week</button></a>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
-    
+    </div>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
