@@ -8,15 +8,30 @@
     Zip Code: {{ logged_in_employees.zip_code }}<br />
     <br />
     <br />
-    <h3>Displayed are the customers in your area for pick up: </h3>
+    <h4>Displayed are the customers in your area for pick up: </h4>
     <ul>
-      {% for customer in customer_trash_picked_up %}
-      <h4>{{ customer.name }} - <a href= "{% url 'employees:date_of_last_pickup' customer.id%}"> <button>submit</button></a></h4>
-      {% endfor %}
-    </ul>
+      <div class = "container mt-3"></div>
+         <table class ="table table-dark table-striped">
+          <thead> 
+              <tr>
+                  <th>Name</th>
+                  <th>Confirm Pickup</th>
+              </tr>    
+          </thead>
+          <tbody>
+            {% for customer in customer_trash_picked_up %}
+              <tr>
+                   <td>{{customer.name}}</td>
+                   <td><a href= "{% url 'employees:date_of_last_pickup' customer.id%}"> <button type="button" class="btn btn-success">Submit</button></a></td>
+              </tr>
+              {% endfor %}
+          </tbody> 
+         </table>
+      </div>     
+      </ul>
     <br />
     <br />
-    <a href="{% url 'employees:filter_by_day' %}">Search by day of the week</a>
+    <a href="{% url 'employees:filter_by_day' %}"><button type="button" class="btn btn-outline-info">Search by day of the Week</button></a>
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     

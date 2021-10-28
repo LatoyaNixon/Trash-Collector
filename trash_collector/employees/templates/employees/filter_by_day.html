@@ -8,12 +8,9 @@
 <form action="{% url 'employees:filter_by_day' %}" method="post">
     {% csrf_token %}
     Pick a day to search by: <input type='text' name='weekly_pickup' id='weekly_pickup' value={{display_customers.weekly_pickup}}><br/>
-    <input type="submit" value="Submit">
+   <input type="submit" value="Submit">
 </form>
 <ul>
-    <!-- {% for customer in display_customers %}
-    {{customer.name}}
-    {% endfor %} -->
 <div class = "container mt-3"></div>
    <table class ="table table-dark table-striped">
     <thead> 
@@ -31,9 +28,7 @@
         {% endfor %}
     </tbody> 
    </table>
-</div>    
-    <!-- <h4>{{day_from_form}} - {{ customer.name }}</h4> -->
-    
+</div>     
 </ul>
     
    
